@@ -16,6 +16,7 @@ const btnSubmit = document.getElementById('btnSubmit');
 const formTareas = document.getElementById('formTareas');
 const inputAddTask = document.getElementById('inputAddTask');
 const boxTasks = document.getElementById('boxTasks');
+const allTasks = document.getElementById('allTasks');
 
 const listaDeTareas = [
     {
@@ -38,6 +39,9 @@ const listaDeTareas = [
     }
 ];
 
+const listaBotones = document.querySelectorAll(".Tabs-button");
+const listaPaginas = document.querySelectorAll(".Tabs-contenido");
+
 
 // -------------------------------
 // Funciones 
@@ -48,10 +52,10 @@ const listaDeTareas = [
  */
 function showTasks() {
     // borrar contendio de la caja
-    boxTasks.innerHTML = ``;
-
+    allTasks.innerHTML = '';
+    console.log(allTasks);
     listaDeTareas.forEach((tarea) => {
-        boxTasks.innerHTML += `<li class="Main-li">
+        allTasks.innerHTML += `<li class="Main-li">
                                   <div class="Main-inputs">
                                    <input type="checkbox" id="${tarea.id}" ${tarea.isDone ? 'checked' : ''} ">
                                    <label for="${tarea.id}">${tarea.tittle}</label>  
@@ -67,16 +71,40 @@ function showTasks() {
     console.log(listaDeTareas);
 }
 
+
+function showNotDoneTasks() {
+    boxTasks.innerHTML = ``;
+
+    listaDeTareas.forEach((tarea) => {
+        if (!tarea.isDone) {
+            boxTasks.innerHTML += `<li class="Main-li">
+                                  <div class="Main-inputs">
+                                   <input type="checkbox" id="${tarea.id}" ${tarea.isDone ? 'checked' : ''} ">
+                                   <label for="${tarea.id}">${tarea.tittle}</label>  
+                                  </div>
+                                                                
+                                   <div class="Main-buttons">
+                                    <button onclick=deleteTask(${tarea.id}) class=" u-delet">X</button>
+                                   <button onclick=doneTask(${tarea.id}) class="Button" id='btnDone'>Completar</button>
+                                   </div>
+                                  
+                               </li>`
+        }
+
+    });
+    console.log(listaDeTareas);
+}
+
 /**
  * Función para agregar una nueva tarea a la lista listaDeTareas
  * Si la tarea viene vacia muestra una alerta 
  * @param {String} tarea
  */
 function addTask() {
-    const tarea = { id: 0 , tittle: '', isDone: false,}
+    const tarea = { id: 0, tittle: '', isDone: false, }
     if (!inputAddTask.value.includes('<') && inputAddTask.value.trim() != "") {
         tarea.tittle = inputAddTask.value;
-        tarea.id =  listaDeTareas[listaDeTareas.length-1].id + 1;
+        tarea.id = listaDeTareas[listaDeTareas.length - 1].id + 1;
         listaDeTareas.push(tarea);
     } else {
         alert("Por favor ingresa una tarea válida");
@@ -102,8 +130,40 @@ function deleteTask(id) {
     console.log(index);
     listaDeTareas.splice(index, 1);
     showTasks();
-// listaDeTareas = listaDeTareas.filter(tarea => tarea.id != id); => Para que este sea viable listaDeTareas no puede ser const
+    // listaDeTareas = listaDeTareas.filter(tarea => tarea.id != id); => Para que este sea viable listaDeTareas no puede ser const
 }
+
+
+listaBotones.forEach(boton => boton.addEventListener('click', () => {
+    console.log(listaPaginas);
+    console.log()
+    listaPaginas.forEach((pagina) => {
+        console.log(pagina);
+        if (pagina.id === 'allTasks') {
+            console.log(pagina.id);
+            showTasks();
+
+        }
+        if (pagina.id === 'boxTasks') {
+            console.log('Aqui desss')
+            showNotDoneTasks();
+
+        }
+        if (
+            pagina.id == boton.dataset.tab
+
+        ) {
+
+            pagina.classList.add('u-visible');
+        } else {
+            pagina.classList.remove('u-visible');
+            console.log(pagina);
+        }
+
+    })
+    listaBotones.forEach(boton => boton.classList.remove('u-active'));
+    boton.classList.toggle('u-active');
+}))
 
 // -------------------------------
 // Eventos  
@@ -120,4 +180,5 @@ formTareas.addEventListener("submit", (event) => {
 // -------------------------------
 // Iniciar nuestro programa  
 //---------------------------------
-showTasks();
+//showTasks();
+listaBotones[0].click();

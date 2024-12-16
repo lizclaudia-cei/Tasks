@@ -4,17 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To do list</title>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
-    <main class="Main">
+    <header class="Header">
         <h1>Lista de Tareas</h1>
-        <ul class="Main-ul" id="boxTasks">
+    </header>
+
+    <main class="Main">
+        <ul class="Main-ul Tabs-contenido" id="boxTasks" >
             <li class="Main-li">Tarea 1
                 <input type="checkbox" value="true" checked>
             </li>
             <li>Tarea 2</li>
         </ul>
+
+        <ul  id="allTasks" class=" Tabs-contenido">
+            <li class="Main-li">Tarea 1
+                <input type="checkbox" value="true" checked>
+            </li>
+            <li>Tarea 2</li>
+        </ul>
+        <div id="profile" class="Tabs-contenido">
+            <h2>Perfil del usuario</h2>
+        </div>
+
 
         <form class="Main-form" id="formTareas">
             <input class="Main-input" id="inputAddTask" type="text" name="tarea" placeholder="Ingrese una tarea">
@@ -22,6 +36,15 @@
             
         </form>
     </main>
-    <script src="./content.js"></script>
+    <footer class="Footer">
+        <ul class="Tabs-buttons">
+            <li data-tab="boxTasks" class="Tabs-button">Pendientes</li>
+
+            <li data-tab="allTasks" class="Tabs-button">Todas</li>
+
+            <li data-tab="profile" class="Tabs-button">Perfil</li>
+        </ul>
+    </footer>
+    <script src="./assets/js/content.js"></script>
 </body>
 </html>

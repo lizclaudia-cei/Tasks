@@ -1,7 +1,58 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+.Header{
+    background-color: #f4f0f0;
+    display: flex;
+    padding: 10px;
+    border-radius: 10px;
+    color:lightblue;
+}
+
+.Footer{
+    background-color: #f4f0f0;
+    color:lightblue;
+    display: flex;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.Tabs-contenido{
+    display:none;
+}
+
+.Tabs-buttons{
+    list-style: none;
+    display: flex;
+    gap: 20px;
+
+    text-align: center;
+}
+
+.Tabs-button{
+   padding: 10px;
+   height: 100%;
+   
+}
+
+.u-active{
+    border-top: 1px solid #b0a7a7;
+}
+
+.u-visible{
+    display: block;
+}
 
 .Main{
     display:flex;
     flex-direction: column;
+    height: 100vh;
+    padding: 1rem;
+    gap: 10px;
 }
 
 .Main-ul{
