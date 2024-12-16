@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To do list</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <main class="Main">
+        <h1>Lista de Tareas</h1>
+        <ul class="Main-ul" id="boxTasks">
+            <li class="Main-li">Tarea 1
+                <input type="checkbox" value="true" checked>
+            </li>
+            <li>Tarea 2</li>
+        </ul>
+
+        <form class="Main-form" id="formTareas">
+            <input class="Main-input" id="inputAddTask" type="text" name="tarea" placeholder="Ingrese una tarea">
+            <button class="Main-addButton" type="submit" id="btnSubmit">+</button>
+            
+        </form>
+    </main>
+    <script src="./content.js"></script>
+</body>
+</html>
